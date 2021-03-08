@@ -1,7 +1,11 @@
 # bot.py
-import discord
-import os
+import discord, time, os 
 from discord.ext import commands
+from datetime import datetime
+
+print(Bot is ready.)
+start_time = time.time()
+
 
 client = commands.Bot(command_prefix=",")
 

@@ -7,11 +7,6 @@ class Status(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-################################ Bot status
-    @commands.Cog.listener()
-    async def on_ready(self):
-        print('Bot is ready.')
-
 ################################ Basic log
     @commands.Cog.listener()
     async def on_member_join(self):
