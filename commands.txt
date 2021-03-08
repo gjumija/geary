@@ -1,0 +1,47 @@
+################################# Základní příkazy
+@commands.Cog.listener()
+async def on_member_join(self):
+    await ctx.send(f'{member.mention} has connected to fsociety.')
+
+@client.event
+async def on_member_join(member):
+    await ctx.send(f'{member.mention} has connected to fsociety.')
+
+@client.event
+async def on_member_rmeove(member):
+    await ctx.send(f'{member.mention} has left fsociety.')
+
+
+################################# Ping
+@client.command()
+async def ping(ctx):
+    await ctx.send(f'Pong! {round(client.latency * 1000)} ms')
+
+################################# Clear
+@client.command(aliases=['c', 'clr'])
+async def clear(ctx, amount=2):
+    await ctx.channel.purge(limit=amount)
+
+################################# Ban, uban & kick
+@client.command()
+async def kick(ctx, member : discord.Member, *, reason=None):
+    await member.kick(reason=reason)
+    await ctx.send(f'Kicked {member.mention}')
+
+@client.command()
+async def ban(ctx, member : discord.Member, *, reason=None):
+    await member.ban(reason=reason)
+    await ctx.send(f'Banned {member.mention}')
+
+@client.command()
+async def unban(ctx, *, member):
+    banned_users = await ctx.guild.bans()
+    member_name, member_discriminator = member.split('#')
+
+    for ban_entry in banned_users:
+        user = ban_entry.user
+
+        if (user.name, user.discriminator) == (member_name, member_discriminator):
+            await ctx.guild.unban(user)
+            await ctx.send(f'Unbaned {user.mention}')
+            return
