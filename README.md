@@ -1,2 +1,2 @@
-# Geary
+# Alfred
 Discord bot
