@@ -1,2 +1,2 @@
-# geary
-discord bot
+# Geary
+Discord bot
