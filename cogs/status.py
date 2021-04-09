@@ -10,6 +10,7 @@ class Status(commands.Cog):
     ################################## Basic log
     @commands.Cog.listener()
     async def on_member_join(self, member):
+<<<<<<< HEAD
         if member.bot: return
         chnl = self.client.get_channel(self._join_remove_channel_id)
         await chnl.send(f'{member.mention} se připojil k fsociety.')
@@ -19,6 +20,13 @@ class Status(commands.Cog):
         if member.bot: return
         chnl = self.client.get_channel(self._join_remove_channel_id)
         await chnl.send(f'{member.mention} opustil fsociety.')
+=======
+        await ctx.send(f'{member.mention} se připojil k fsociety.')
+
+    @commands.Cog.listener()
+    async def on_member_remove(self, member):
+        await ctx.send(f'{member.mention} opustil fsociety.')
+>>>>>>> dc213e837401be72a7630b455d5a2b77ed05a9d4
 
     ################################## Ping
     @commands.command()
