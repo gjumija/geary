@@ -27,8 +27,13 @@ class Status(commands.Cog):
 
     ################################## Clear
     @commands.command(aliases=['c', 'clr'])
+<<<<<<< HEAD
     async def clear(self, ctx, amount=1):
         await ctx.channel.purge(limit=amount+1)
+=======
+    async def clear(ctx, amount=1):
+        await ctx.channel.purge(limit=(amount+1))
+>>>>>>> d4403da2af4bb962574a5373aa4de03bc2d4e7f7
 
 def setup(client):
     client.add_cog(Status(client))
