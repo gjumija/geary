@@ -14,3 +14,6 @@ class Hello(object):
     async def ahoj(self, ctx):
         await ctx.send(f'Ahoj {member.mention}, vítám tě.')
         await ctx.send(f'Pro navigaci použij příkaz ",help".')
+
+def setup(client):
+    client.add_cog(Hello(client))
