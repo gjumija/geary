@@ -1,23 +1,30 @@
 # bot.py
-import os
+import discord, time, os
 
-import discord
+from discord.ext import commands, tasks
+from datetime import datetime
 from dotenv import load_dotenv
 
+print('Bot is ready.')
+start_time = time.time()
+
+################################## Basic config
+client = commands.Bot(command_prefix=",")
+client = discord.Client()
+
+################################## Cog loader
+for filename in os.listdir('./cogs'):
+    if filename.endswith('.py'):
+        client.load_extension(f'cogs.{filename[:-3]}')
+
+################################## Token
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 
-client = discord.Client()
-
+################################## Events
 @client.event
 async def on_ready():
-    print(f'{client.user.name} has connected to Discord!')
+    print(f'{client.user.name} se připojil!')
 
-@client.event
-async def on_member_join(member):
-    await member.create_dm()
-    await member.dm_channel.send(
-        f'Hi {member.name}, welcome to my Discord server!'
-    )
-
+################################## Token
 client.run(TOKEN)
