@@ -12,12 +12,12 @@ class Alizee(commands.Cog):
     players = {}
 
     ################################### Alizee
-    @commands.Cog.listener(pass_context=True)
+    @commands.command(pass_context=True)
     async def join(self, ctx):
         channel = ctx.message.author.voice.voice_channel
         await self.client.join_voice_channel(channel)
 
-    @commands.Cog.listener()(pass_context=True)
+    @commands.command(pass_context=True)
     async def leave(slef, ctx):
         server = ctx.message.server
         voice_client = self.client.voice_client_in(server)
