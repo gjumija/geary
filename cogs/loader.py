@@ -1,22 +1,22 @@
 # loader.py
 import discord
-from discord import commands, tasks
+from discord.ext import commands, tasks
 
-class Status(object):
-    """docstring for Status."""
+class Loader(commands.Cog):
+    """docstring for Loader."""
 
     def __init__(self, client):
         self.client = client
         self._join_remove_channel_id = 829970999788699708
 
     ################################## Cog loader
-    @client.command()
-    async def load(ctx, extension):
-        client.load_extension(f'cogs.{extension}')
+    @commands.command()
+    async def load(self, ctx, extension):
+        self.client.load_extension(f'cogs.{extension}')
 
-    @client.command()
-    async def unload(ctx, extension):
-        client.unload_extension(f'cogs.{extension}')
+    @commands.command()
+    async def unload(self, ctx, extension):
+        self.client.unload_extension(f'cogs.{extension}')
 
 def setup(client):
-    client.add_cog(Status(client))
+    client.add_cog(Loader(client))
